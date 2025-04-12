@@ -1,12 +1,14 @@
 ///<reference types="cypress"/>
 
+import { loginSelectors } from '../support/selectors';
+
 
 describe ('Login page', () => {
 
     beforeEach(() => {
         cy.visit('https://www.saucedemo.com/')
       })
-
+      
 
     it('[Login_Page_01] Login form is displayed', () => {
         cy.get('#user-name').should('be.visible')
@@ -31,7 +33,7 @@ describe ('Login page', () => {
         .should('contain', 'Epic sadface: Username is required')
     })
 
-    it.only('[Login_Page_03] should allow user to log in', () => {
+    it('[Login_Page_03] should allow user to log in', () => {
         const userName = cy.get('input[name="user-name"]')
         userName.type('standard_user{enter}') 
 
@@ -44,6 +46,22 @@ describe ('Login page', () => {
         cy.contains('Login').should('not.exist')
     })
 
+
+    it('[Login_Page_04] should allow user to log in', () => {
+        cy.get(loginSelectors.usernameInput).type('standard_user')
+        cy.get(loginSelectors.passwordInput).type('secret_sauce') 
+        cy.get(loginSelectors.loginButton).click()
+        
+        cy.url().should('include', '/inventory') 
+        cy.contains('Login').should('not.exist')
+    })
+
+    it.only('[Login_Page_05] should allow user to log in', () => {
+        cy.login('standard_user', 'secret_sauce')
+        
+        cy.url().should('include', '/inventory') 
+        cy.contains('Login').should('not.exist')
+    })
 
 
     afterEach(() => {
