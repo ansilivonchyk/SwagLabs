@@ -18,7 +18,7 @@ describe ('Login page', () => {
         .first().should('contain', 'Accepted usernames are:') //part of the text
         .last().should('have.text', 'Password for all users:secret_sauce') //full text
        
-        // cy.screenshot('[Login_Page_01]')
+         cy.screenshot('[Login_Page_01]')
     })
 
     it('[Login_Page_02] validate empty data', () => {
