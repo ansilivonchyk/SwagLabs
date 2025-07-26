@@ -4,4 +4,13 @@ export const loginSelectors = {
   usernameInput: 'input[name="user-name"]',
   passwordInput: 'input[name="password"]',
   loginButton: '#login-button',
+  errorMessage: '[data-test="error"]'
 };
+
+
+
+
+
+
+
+
