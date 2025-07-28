@@ -26,8 +26,6 @@ describe ('Login page', () => {
          cy.screenshot('[Login_Page_01]')
     })
 
-
-
     it('[Login_01_1] Successful login with a standard user', () => {
         const userName = cy.get('input[name="user-name"]')
         userName.type('standard_user{enter}') 
@@ -50,6 +48,12 @@ describe ('Login page', () => {
         cy.contains('Login').should('not.exist')
     })
 
+
+
+
+
+
+    
     it('[Login_01] Successful login with a standard user', () => {
         cy.login('standard_user', 'secret_sauce')
         
@@ -94,30 +98,6 @@ describe ('Login page', () => {
 
         cy.error('Epic sadface: Username is required')
     })
-
-
-
-
-    it('[Products_01] Verify product list loads', () => {
-        cy.log('Ensure that the full list of products is displayed after a successful login')
-        cy.login('standard_user', 'secret_sauce')
-
-        cy.get('.header_secondary_container .title').should('have.text', 'Products')
-        cy.get('.inventory_item').should('have.length', 6)
-    })
-    
-    it.only('[Products_02] Open product detail page', () => {
-        cy.log('Validate that clicking product name/image opens the product details page')
-        cy.login('standard_user', 'secret_sauce')
-
-        cy.get('.inventory_item:first-of-type .inventory_item_name').click()
-        cy.get('#back-to-products').should('be.visible')
-        cy.get('.inventory_details_name').should('have.text', 'Sauce Labs Backpack')
-    })
-
-
-
-
 
 
     afterEach(() => {
